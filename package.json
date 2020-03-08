@@ -1,0 +1,39 @@
+{
+  "name": "ducklings",
+  "version": "0.1.0",
+  "description": "Combinators!",
+  "main": "dist/ducklings.js",
+  "scripts": {
+    "start": "rollup -c",
+    "watch": "rollup -c -w",
+    "test": "tead",
+    "test-watch": "tead --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foxdonut/ducklings.git"
+  },
+  "keywords": [
+    "combinators",
+    "functional",
+    "functional programming",
+    "lambda",
+    "lambda calculus"
+  ],
+  "author": "foxdonut",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/foxdonut/ducklings/issues"
+  },
+  "homepage": "https://github.com/foxdonut/ducklings#readme",
+  "devDependencies": {
+    "buble": "^0.19.8",
+    "eslint": "^6.8.0",
+    "rollup": "^2.0.2",
+    "rollup-plugin-buble": "^0.19.8",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-uglify": "^6.0.4",
+    "tead": "^0.5.2"
+  }
+}
