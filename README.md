@@ -70,30 +70,60 @@ You want to "hold on" to parameters to a function.
 You want to create a function out of two other functions, passing the result of one to the next,
 from right to left.
 
+```javascript
+const fn = B(fn1)(fn2)
+// fn = value => fn1( fn2(value) )
+```
+
 ### Composition (C)
 
-You want to create a function out of N other functions, passing the result of one to the next, from
-right to left.
+You want to create a function out of any number of other functions, passing the result of one to the
+next, from right to left. Pass `G` (get) at the end to indicate the end of the pipeline.
+
+```javascript
+const fn = C(fn1)(fn2)(fn3)(fn4)(G)
+// fn = value => fn1( fn2( fn3( fn4(value) ) ) )
+```
 
 ### Composition (D)
 
-You want to pass a value through N other functions, passing the result of one to the next, from
-right to left.
+You want to pass a value through any number of other functions, passing the result of one to the
+next, from right to left.
+
+```javascript
+const result = D(value)(fn1)(fn2)(fn3)(fn4)(G)
+// result = fn1( fn2( fn3( fn4(value) ) ) )
+```
 
 ### Pipeline (P)
 
 You want to create a function out of two other functions, passing the result of one to the next,
 from left to right.
 
+```javascript
+const fn = P(fn1)(fn2)
+// fn = value => fn2( fn1(value) )
+```
+
 ### Pipeline (Q)
 
-You want to create a function out of N other functions, passing the result of one to the next, from
-left to right.
+You want to create a function out of any number of other functions, passing the result of one to the
+next, from left to right. Pass `G` (get) at the end to indicate the end of the pipeline.
+
+```javascript
+const fn = Q(fn1)(fn2)(fn3)(fn4)(G)
+// fn = value => fn4( fn3( fn2( fn1(value) ) ) )
+```
 
 ### Pipeline (R)
 
-You want to pass a value through N other functions, passing the result of one to the next, from left
-to right.
+You want to pass a value through any number of other functions, passing the result of one to the
+next, from left to right. Pass `G` (get) at the end to indicate the end of the pipeline.
+
+```javascript
+const result = R(value)(fn1)(fn2)(fn3)(fn4)(G)
+// result = fn4( fn3( fn2( fn1(value) ) ) )
+```
 
 ## Further Reading and Watching
 
