@@ -21,15 +21,16 @@ import { I, K, R, /* ... */ } from 'ducklings'
 Here are the provided combinators:
 
 ```javascript
-export const G = {}
+export const E = {}
 
 export const I = a => a
 export const K = a => () => a
+export const G = ps => a => ps.reduce((o, p) => o == undefined ? undefined : o[p] , a)
 export const T = a => f => f(a)
 export const V = a => b => f => f(a)(b)
 
-const N = F => f => g => g === G ? a => f(a) : N(F)(F(f)(g))
-const TN = F => a => f => g => g === G ? f(a) : TN(F)(a)(F(f)(g))
+const N = F => f => g => g === E ? a => f(a) : N(F)(F(f)(g))
+const TN = F => a => f => g => g === E ? f(a) : TN(F)(a)(F(f)(g))
 
 export const B = f => g => a => f(g(a))
 export const C = N(B)
@@ -47,14 +48,21 @@ them:
 
 ### Identity (I)
 
-You need a function that just passes a value through.
-
-```javascript
-```
+You need a function that just passes a value through. Use `I`.
 
 ### Constant (K)
 
-You have a value, but you need to pass a function.
+You have a value, but you need to pass a function. Use `K(value)`.
+
+### Get (G)
+
+You want to safely get a deep property from an object.
+
+```javascript
+// This will return `undefined` without blowing up if the object is `null` or `undefined`,
+// or if any property along the path does not exist.
+G(['deeply', 'nested', 'path'])(object)
+```
 
 ### Thrush (T)
 
@@ -78,20 +86,20 @@ const fn = B(fn1)(fn2)
 ### Composition (C)
 
 You want to create a function out of any number of other functions, passing the result of one to the
-next, from right to left. Pass `G` (get) at the end to indicate the end of the pipeline.
+next, from right to left. Pass `E` (extract) at the end to indicate the end of the pipeline.
 
 ```javascript
-const fn = C(fn1)(fn2)(fn3)(fn4)(G)
+const fn = C(fn1)(fn2)(fn3)(fn4)(E)
 // fn = value => fn1( fn2( fn3( fn4(value) ) ) )
 ```
 
 ### Composition (D)
 
 You want to pass a value through any number of other functions, passing the result of one to the
-next, from right to left.
+next, from right to left. Pass `E` (extract) at the end to indicate the end of the pipeline.
 
 ```javascript
-const result = D(value)(fn1)(fn2)(fn3)(fn4)(G)
+const result = D(value)(fn1)(fn2)(fn3)(fn4)(E)
 // result = fn1( fn2( fn3( fn4(value) ) ) )
 ```
 
@@ -108,20 +116,20 @@ const fn = P(fn1)(fn2)
 ### Pipeline (Q)
 
 You want to create a function out of any number of other functions, passing the result of one to the
-next, from left to right. Pass `G` (get) at the end to indicate the end of the pipeline.
+next, from left to right. Pass `E` (extract) at the end to indicate the end of the pipeline.
 
 ```javascript
-const fn = Q(fn1)(fn2)(fn3)(fn4)(G)
+const fn = Q(fn1)(fn2)(fn3)(fn4)(E)
 // fn = value => fn4( fn3( fn2( fn1(value) ) ) )
 ```
 
 ### Pipeline (R)
 
 You want to pass a value through any number of other functions, passing the result of one to the
-next, from left to right. Pass `G` (get) at the end to indicate the end of the pipeline.
+next, from left to right. Pass `E` (extract) at the end to indicate the end of the pipeline.
 
 ```javascript
-const result = R(value)(fn1)(fn2)(fn3)(fn4)(G)
+const result = R(value)(fn1)(fn2)(fn3)(fn4)(E)
 // result = fn4( fn3( fn2( fn1(value) ) ) )
 ```
 

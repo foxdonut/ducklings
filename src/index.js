@@ -1,12 +1,13 @@
-export const G = {}
+export const E = {}
 
 export const I = a => a
 export const K = a => () => a
+export const G = ps => a => ps.reduce((o, p) => o == undefined ? undefined : o[p] , a)
 export const T = a => f => f(a)
 export const V = a => b => f => f(a)(b)
 
-const N = F => f => g => g === G ? a => f(a) : N(F)(F(f)(g))
-const TN = F => a => f => g => g === G ? f(a) : TN(F)(a)(F(f)(g))
+const N = F => f => g => g === E ? a => f(a) : N(F)(F(f)(g))
+const TN = F => a => f => g => g === E ? f(a) : TN(F)(a)(F(f)(g))
 
 export const B = f => g => a => f(g(a))
 export const C = N(B)

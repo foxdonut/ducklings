@@ -1,4 +1,4 @@
-import { G, I, K, T, V, B, C, D, P, Q, R } from '../src/index'
+import { E, I, K, G, T, V, B, C, D, P, Q, R } from '../src/index'
 
 const add = a => b => b + a
 const sub = a => b => b - a
@@ -14,6 +14,28 @@ export default {
     K(5)('anything'),
     5
   ],
+  G: {
+    G1: [
+      G(['one', 'two'])(null),
+      undefined
+    ],
+    G2: [
+      G(['one', 'two'])(undefined),
+      undefined
+    ],
+    G3: [
+      G(['one', 'two'])({}),
+      undefined
+    ],
+    G4: [
+      G(['one', 'two'])({ one: {} }),
+      undefined
+    ],
+    G5: [
+      G(['one', 'two'])({ one: { two: 'three', } }),
+      'three'
+    ]
+  },
   T: [
     T(5)(add(10)),
     15
@@ -27,11 +49,11 @@ export default {
     205
   ],
   C: [
-    C(add(5))(mul(10))(sub(15))(G)(20),
+    C(add(5))(mul(10))(sub(15))(E)(20),
     55
   ],
   D: [
-    D(20)(add(5))(mul(10))(sub(15))(G),
+    D(20)(add(5))(mul(10))(sub(15))(E),
     55
   ],
   P: [
@@ -39,11 +61,11 @@ export default {
     250
   ],
   Q: [
-    T(10)(Q(add(11))(mul(5))(mul(2))(div(5))(G)),
+    T(10)(Q(add(11))(mul(5))(mul(2))(div(5))(E)),
     42
   ],
   R: [
-    R(10)(add(11))(mul(5))(mul(2))(div(5))(G),
+    R(10)(add(11))(mul(5))(mul(2))(div(5))(E),
     42
   ]
 }
