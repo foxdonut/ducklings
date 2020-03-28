@@ -26,6 +26,7 @@ export const E = {}
 export const I = a => a
 export const K = a => () => a
 export const G = ps => a => ps.reduce((o, p) => o == undefined ? undefined : o[p] , a)
+export const D = a => b => b == undefined ? a : b
 export const T = a => f => f(a)
 export const V = a => b => f => f(a)(b)
 
@@ -34,7 +35,6 @@ const TN = F => a => f => g => g === E ? f(a) : TN(F)(a)(F(f)(g))
 
 export const B = f => g => a => f(g(a))
 export const C = N(B)
-export const D = TN(B)
 
 export const P = f => g => a => g(f(a))
 export const Q = N(P)
@@ -62,6 +62,15 @@ You want to safely get a deep property from an object.
 // This will return `undefined` without blowing up if the object is `null` or `undefined`,
 // or if any property along the path does not exist.
 G(['deeply', 'nested', 'path'])(object)
+```
+
+## Default (D)
+
+You want a default value to use in case a function returns `null` or `undefined`.
+
+```javascript
+D("default")(null) // returns "default"
+D("default")("value") // returns "value"
 ```
 
 ### Thrush (T)

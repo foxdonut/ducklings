@@ -1,4 +1,4 @@
-import { E, I, K, G, T, V, B, C, D, P, Q, R } from '../src/index'
+import { E, I, K, G, D, T, V, B, C, P, Q, R } from '../src/index'
 
 const add = a => b => b + a
 const sub = a => b => b - a
@@ -36,6 +36,16 @@ export default {
       'three'
     ]
   },
+  D: {
+    D1: [
+      D('default')(G(['one'])({})),
+      'default'
+    ],
+    D2: [
+      D('default')(G(['one'])({ one: 'value' })),
+      'value'
+    ]
+  },
   T: [
     T(5)(add(10)),
     15
@@ -50,10 +60,6 @@ export default {
   ],
   C: [
     C(add(5))(mul(10))(sub(15))(E)(20),
-    55
-  ],
-  D: [
-    D(20)(add(5))(mul(10))(sub(15))(E),
     55
   ],
   P: [
