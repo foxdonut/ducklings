@@ -27,6 +27,7 @@ export const I = a => a
 export const K = a => () => a
 export const G = ps => a => ps.reduce((o, p) => o == undefined ? undefined : o[p] , a)
 export const D = a => b => b == undefined ? a : b
+export const W = f => a => a == undefined ? undefined : f(a)
 export const T = a => f => f(a)
 export const V = a => b => f => f(a)(b)
 
@@ -64,13 +65,23 @@ You want to safely get a deep property from an object.
 G(['deeply', 'nested', 'path'])(object)
 ```
 
-## Default (D)
+### Default (D)
 
 You want a default value to use in case a function returns `null` or `undefined`.
 
 ```javascript
 D("default")(null) // returns "default"
 D("default")("value") // returns "value"
+```
+
+### When (W)
+
+You want to call a function only if a value is not `null` or `undefined`.
+
+```javascript
+W(name => `Hello, ${name}`)(G(['deeply', 'nested', 'path'])(object))
+// returns "Hello, SomeName" if object.deeply.nested.path = SomeName
+// returns undefined if object.deeply.nested.path is null or undefined
 ```
 
 ### Thrush (T)

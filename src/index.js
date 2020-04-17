@@ -4,6 +4,7 @@ export const I = a => a
 export const K = a => () => a
 export const G = ps => a => ps.reduce((o, p) => o == undefined ? undefined : o[p] , a)
 export const D = a => b => b == undefined ? a : b
+export const W = f => a => a == undefined ? undefined : f(a)
 export const T = a => f => f(a)
 export const V = a => b => f => f(a)(b)
 

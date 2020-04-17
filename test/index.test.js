@@ -1,4 +1,4 @@
-import { E, I, K, G, D, T, V, B, C, P, Q, R } from '../src/index'
+import { E, I, K, G, D, W, T, V, B, C, P, Q, R } from '../src/index'
 
 const add = a => b => b + a
 const sub = a => b => b - a
@@ -44,6 +44,16 @@ export default {
     D2: [
       D('default')(G(['one'])({ one: 'value' })),
       'value'
+    ]
+  },
+  W: {
+    W1: [
+      W(name => `Hello, ${name}`)(null),
+      undefined
+    ],
+    W2: [
+      W(name => `Hello, ${name}`)('SomeName'),
+      'Hello, SomeName'
     ]
   },
   T: [
